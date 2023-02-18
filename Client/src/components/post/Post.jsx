@@ -3,7 +3,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useContext, useState } from "react";
 import React from "react";
 import { useEffect } from "react";
-import axios from "axios";
+//import axios from "axios";
+import {axiosInstance} from "../../config"
 import {format} from "timeago.js"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -21,7 +22,7 @@ export default function Post({post}) {
 
   useEffect(()=>{
     const fetchUser = async()=>{
-      const res = await axios.get(`/users?userId=${post.userId}`);
+      const res = await axiosInstance.get(`/users?userId=${post.userId}`);
       setUser(res.data)
     };
    fetchUser();
@@ -31,7 +32,7 @@ export default function Post({post}) {
 
   const likeHandler =()=>{
     try{
-      axios.put("/posts/" + post._id +"/like", {userId:currentUser._id} )
+      axiosInstance.put("/posts/" + post._id +"/like", {userId:currentUser._id} )
     } catch(err) {
 
     }

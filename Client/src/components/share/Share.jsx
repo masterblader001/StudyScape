@@ -5,7 +5,8 @@ import RoomIcon from '@mui/icons-material/Room';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
+//import axios from "axios";
+import {axiosInstance} from "../../config";
 import CancelIcon from '@mui/icons-material/Cancel';
 
 export default function Share() {
@@ -28,13 +29,13 @@ export default function Share() {
             data.append("name", fileName)
             newPost.img = fileName;
             try{
-                await axios.post("/upload", data)
+                await axiosInstance.post("/upload", data)
             } catch(err){
                 console.log(err);
             }
         }
         try {
-            await axios.post("/posts", newPost);
+            await axiosInstance.post("/posts", newPost);
             window.location.reload()
 
         } catch(err) {

@@ -2,7 +2,8 @@ import "./rightbar.css"
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+//import axios from "axios";
+import {axiosInstance} from "../../config"
 import {Link} from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -19,7 +20,7 @@ export default function Rightbar({user}) {
   useEffect(()=>{
     const getFriends = async () =>{
       try {
-        const friendList = await axios.get("/users/friends/" + user._id);
+        const friendList = await axiosInstance.get("/users/friends/" + user._id);
         setFriends(friendList.data);
 
       } catch (err) {
