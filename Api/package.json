@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start":  "react-scripts --openssl-legacy-provider start",
-    "heroku-postbuild": "cd Api && npm install && npm run build"
+    "start":  "node server.js",
+    "heroku-postbuild": "(cd ../Client && npm install) && npm run build"
   },
   "author": "",
   "license": "ISC",
